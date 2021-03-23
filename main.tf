@@ -4,7 +4,7 @@ resource "spacelift_stack" "manager" {
   administrative = true
   autodeploy = true
   branch = "master"
-  repository = "manager"
+  repository = var.manager_repository
 
   labels = [
     "destroy_on_delete",
