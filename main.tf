@@ -33,6 +33,6 @@ resource "spacelift_environment_variable" "aws_role" {
 resource "spacelift_environment_variable" "domain_name" {
   stack_id = spacelift_stack.manager.id
   name = "TF_VAR_domain_name"
-  value = var.aws_role
+  value = var.domain_name
   write_only = false
 }
