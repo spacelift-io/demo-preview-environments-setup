@@ -18,6 +18,11 @@ resource "spacelift_policy" "manager-trigger_policy" {
   body = file("policies/manager-trigger.rego")
 }
 
+resource "spacelift_aws_role" "hello-service" {
+  stack_id = spacelift_stack.manager.id
+  role_arn = var.aws_role
+}
+
 resource "spacelift_environment_variable" "aws_role" {
   stack_id = spacelift_stack.manager.id
   name = "TF_VAR_aws_role"
