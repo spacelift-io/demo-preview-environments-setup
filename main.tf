@@ -14,7 +14,7 @@ resource "spacelift_stack" "manager" {
 
 resource "spacelift_policy_attachment" "manager-trigger_policy" {
   stack_id = spacelift_stack.manager.id
-  policy_id = spacelift_policy.manager-trigger_policy
+  policy_id = spacelift_policy.manager-trigger_policy.id
 }
 
 resource "spacelift_policy" "manager-trigger_policy" {
