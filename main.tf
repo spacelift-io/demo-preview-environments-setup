@@ -12,6 +12,11 @@ resource "spacelift_stack" "manager" {
   ]
 }
 
+resource "spacelift_policy_attachment" "manager-trigger_policy" {
+  stack_id = spacelift_stack.manager.id
+  policy_id = spacelift_policy.manager-trigger_policy
+}
+
 resource "spacelift_policy" "manager-trigger_policy" {
   name = "Demo Preview Environments Manager Trigger Policy"
   type = "TRIGGER"
