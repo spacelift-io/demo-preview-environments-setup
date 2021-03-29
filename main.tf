@@ -23,7 +23,7 @@ resource "spacelift_policy" "manager-trigger_policy" {
   body = file("policies/manager-trigger.rego")
 }
 
-resource "spacelift_aws_role" "hello-service" {
+resource "spacelift_aws_role" "manager" {
   stack_id = spacelift_stack.manager.id
   role_arn = var.aws_role
 }
@@ -40,4 +40,13 @@ resource "spacelift_environment_variable" "domain_name" {
   name       = "TF_VAR_domain_name"
   value      = var.domain_name
   write_only = false
+}
+
+resource "spacelift_stack_destructor" "manager" {
+  depends_on = [
+    spacelift_aws_role.manager,
+    spacelift_environment_variable.aws_role,
+    spacelift_environment_variable.domain_name,
+  ]
+  stack_id = spacelift_stack.manager.id
 }
